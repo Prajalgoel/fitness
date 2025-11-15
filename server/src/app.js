@@ -14,7 +14,10 @@ const app = express();
 
 // Middleware
 app.use(helmet()); // Security headers
-app.use(cors()); // Enable CORS
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://fitness-delta-ivory.vercel.app'],
+  credentials: true
+})); // Enable CORS
 app.use(morgan('dev')); // Logging
 app.use(express.json()); // Body parser
 app.use(express.urlencoded({ extended: false }));
