@@ -1,0 +1,255 @@
+{
+  "info": {
+    "name": "Fitness & Nutrition Tracker API",
+    "description": "Complete API collection for the Fitness & Nutrition Tracker MERN application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"age\": 30,\n  \"weight\": 75,\n  \"height\": 175,\n  \"goal\": \"loss\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/signup",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "signup"]
+            },
+            "description": "Create a new user account. Goal options: 'loss', 'gain', 'maintain'"
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/login",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Login with email and password to receive JWT token"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Food Logs",
+      "item": [
+        {
+          "name": "Create Food Log",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Grilled Chicken Breast\",\n  \"calories\": 165,\n  \"protein\": 31,\n  \"carbs\": 0,\n  \"fat\": 3.6,\n  \"servings\": 1\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/food",
+              "host": ["{{BASE_URL}}"],
+              "path": ["food"]
+            },
+            "description": "Log a food entry with nutritional information"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Food Logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/food",
+              "host": ["{{BASE_URL}}"],
+              "path": ["food"]
+            },
+            "description": "Get all food logs for the authenticated user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Food Logs by Date",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/food/2025-11-15",
+              "host": ["{{BASE_URL}}"],
+              "path": ["food", "2025-11-15"]
+            },
+            "description": "Get food logs for a specific date (YYYY-MM-DD format)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Workouts",
+      "item": [
+        {
+          "name": "Create Workout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"Running\",\n  \"duration\": 30,\n  \"caloriesBurned\": 300\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/workouts",
+              "host": ["{{BASE_URL}}"],
+              "path": ["workouts"]
+            },
+            "description": "Log a workout session with type, duration, and calories burned"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Workouts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/workouts",
+              "host": ["{{BASE_URL}}"],
+              "path": ["workouts"]
+            },
+            "description": "Get all workouts for the authenticated user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Workouts by Date",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/workouts/2025-11-15",
+              "host": ["{{BASE_URL}}"],
+              "path": ["workouts", "2025-11-15"]
+            },
+            "description": "Get workouts for a specific date (YYYY-MM-DD format)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Summary",
+      "item": [
+        {
+          "name": "Get Today's Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{BASE_URL}}/summary/today",
+              "host": ["{{BASE_URL}}"],
+              "path": ["summary", "today"]
+            },
+            "description": "Get today's summary with consumed calories, burned calories, net calories, and personalized advice"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/health",
+              "host": ["{{BASE_URL}}"],
+              "path": ["health"]
+            },
+            "description": "Public health check endpoint to verify server is running"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:5000/api",
+      "type": "string"
+    },
+    {
+      "key": "TOKEN",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
